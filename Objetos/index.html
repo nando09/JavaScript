@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Objetos</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var taxi = {
+			make: "Webville Motors",
+			model: "Taxi",
+			year: 1995,
+			color: "yellow",
+			passengers: 4,
+			convertible: false,
+			mileage: 281341
+		}
+
+		function prequal(car){
+			if(car.mileage > 10000){
+				return false;
+			}else if(car.year > 1960){
+				return false
+			}
+			return true;
+		}
+
+		var worthALook = prequal(taxi);
+		if(worthALook){
+			console.log("Voce tem que ver isso"+ taxi.make +" " +taxi.model);
+		}else{
+			console.log("Você realmente deve passar o "+ taxi.make +" "+ taxi.model);
+		}
+	</script>
+</body>
+</html>

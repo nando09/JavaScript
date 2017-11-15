@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Melhorando o método</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var fiat = {
+			make: "Fiat",
+			model: "500",
+			year: 1957,
+			color: "Medium Blue",
+			passeagers: 2,
+			convertible: false,
+			mileage: 8800,
+			started: false,
+			fuel: 0,
+
+			start: function(){
+				this.started = true;
+			},
+
+			stop: function(){
+				this.started = false;
+			},
+
+			drive: function(){
+				if(this.started){
+					if (this.fuel > 0){
+						alert(this.make +" "+ this.model+" vamos vrum vrum!");
+						this.fuel = this.fuel - 1;
+					}else{
+						alert("Uh oh, Carro sem combustivel.");
+						this.stop();
+					}
+				}else{
+					alert("Voce precisa ligar para o sair com o carro.");
+				}
+			},
+
+			addFuel: function(amount){
+				this.fuel = this.fuel + amount;
+			}
+		};
+
+		fiat.start();
+		fiat.drive();
+		fiat.addFuel(2);
+		fiat.start();
+		fiat.drive();
+		fiat.drive();
+		fiat.drive();
+		fiat.stop();
+
+	</script>
+</body>
+</html>
