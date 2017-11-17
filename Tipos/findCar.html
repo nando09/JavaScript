@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Find car in lot</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function findCar(car){
+			for (var i = 0; i < lot.length; i++){
+				if(car === lot[i]){
+					return i;
+				}
+			}
+		}
+
+		var chevy = {
+			make: "chevy",
+			model: "Bel Air"
+		}
+
+		var taxi = {
+			make: "Webville Motors",
+			model: "Taxi"
+		}
+
+		var fiat1 = {
+			make: "Fiat",
+			model: "500"
+		}
+
+		var fiat2 = {
+			make: "Fiat",
+			model: "500"
+		}
+
+		var lot = [chevy, taxi, fiat1, fiat2];
+
+		var lotc1 = findCar(fiat2);
+		var lotc2 = findCar(taxi);
+		var lotc3 = findCar(chevy);
+		var lotc4 = findCar(fiat1);
+		var text = "Você sempre tem razão Fernando";
+		var lotc5 = text.toLowerCase();
+
+		if(lotc5.length > 0){
+			alert(lotc5);
+		}
+
+		//toLowerCase -> retorna uma string com cada caractere maiusculo transformando em minusculo
+		//replace -> encontra substring e as substitui por outra string
+		//lastIndexOf -> Igual ao indexOf mas encontra a ultima, não a primeira ocorrencia
+		//slice -> Retorna uma nova string que tem parte da string original removida
+		//concat -> Une as strigs
+		//match -> Busca por correspondencias em uma string usando expressoes regulares
+		//substring -> Retorna uma porção de uma string
+		//trim -> Remove espacos em branco ao redor da string, Ultiu ao processar entradas do usuario
+		//toUpperCase -> Retorna uma string com cada caractere minusculo transformados em maiusculo
+
+		console.log(lotc1);
+		console.log(lotc2);
+		console.log(lotc3);
+		console.log(lotc4);
+	</script>
+</body>
+</html>
