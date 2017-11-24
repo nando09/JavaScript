@@ -4,12 +4,12 @@ var view = {
 		messageArea.innerHTML = msg;
 	},
 
-	displayHit: function(location){
-		var cell = document.getElementById(location);
+	displayHit: function(locations){
+		var cell = document.getElementById(locations);
 		cell.setAttribute("class", "hit");
 	},
-	displayMiss: function(location){
-		var cell = document.getElementById(location);
+	displayMiss: function(locations){
+		var cell = document.getElementById(locations);
 		cell.setAttribute("class", "miss");
 	}
 }
@@ -19,14 +19,57 @@ var model = {
 	numShips: 3,
 	shipLength: 3,
 	shipsSunk: 0,
-	ships: [{location: ["06", "16", "26"], hits: ["", "", ""]},
-			{location: ["24", "34", "44"], hits: ["", "", ""]},
-			{location: ["10", "11", "12"], hits: ["", "", ""]}],
+	ships: [{locations: [0, 0, 0], hits: ["", "", ""]},
+			{locations: [0, 0, 0], hits: ["", "", ""]},
+			{locations: [0, 0, 0], hits: ["", "", ""]}],
+
+	generateShipLocations: function(){
+		var locations;
+		for (var i = 0; i < this.numShips; i++){
+			do{
+				locations = this.generateShips();
+			}while(this.collision(locations));
+			this.ships[i].locations = locations;
+		}
+	},
+
+	collision: function(locations){
+		for(var i = 0; i < this.numShips; i++){
+			var ship = model.ships[i];
+			for(var j = 0; j < locations.length; j++){
+				if(ship.locations.indexOf(locations[j]) >= 0){
+					return true;
+				}
+			}
+		}
+	},
+
+	generateShips: function(){
+		var direction = Math.floor(Math.random() * 2);
+		var row, col;
+		if (direction === 1){
+			row = Math.floor(Math.random() * this.boardSize);
+			col = Math.floor(Math.random() * (this.boardSize - this.shipLength));
+		}else{
+			row = Math.floor(Math.random() * (this.boardSize - this.shipLength));
+			col = Math.floor(Math.random() * this.boardSize);
+		}
+
+		var newShipLocations = [];
+		for (var i = 0; i < this.shipLength; i++){
+			if(direction === 1){
+				newShipLocations.push(row + "" + (col + i));
+			}else{
+				newShipLocations.push((row + i) + "" + col);
+			}
+		}
+		return newShipLocations;
+	},
 
 	fire: function(guess){
 		for (var i = 0; i < this.numShips; i++){
 			var ship = this.ships[i];
-			var index = ship.location.indexOf(guess);
+			var index = ship.locations.indexOf(guess);
 			if(index >= 0){
 				ship.hits[index] = "hit";
 				view.displayHit(guess);
@@ -60,13 +103,13 @@ var controller = {
 	//function para pegar informação do tiro
 	processGuess: function(guess){
 		//verificando na funcao se o guess esta conforme o tabuleiro
-		var location = parseGuess(guess);
-		//Se o retorno de location for verdadeiro entra no if
-		if(location){
+		var locations = parseGuess(guess);
+		//Se o retorno de locations for verdadeiro entra no if
+		if(locations){
 			//acrecente mais 1 no guesses
 			this.guesses++;
 			//retorna true se o navio for atingido
-			var hit = model.fire(location);
+			var hit = model.fire(locations);
 			//Se o navio for atingido e foi todos eles entra no if
 			if(hit && model.shipsSunk === model.numShips){
 				//Manda uma mensagem para o usuario
@@ -104,32 +147,29 @@ function parseGuess(guess){
 	return null;
 }
 
+function init(){
+	var fireButton = document.getElementById("fireButton");
+	fireButton.onclick = handleFireButton;
+	var guessInput = document.getElementById("guessInput");
+	guessInput.onkeypress = handleKeyPress;
 
-controller.processGuess("A0");
+	model.generateShipLocations();
+}
 
-controller.processGuess("A6");
-controller.processGuess("B6");
-controller.processGuess("C6");
+function handleFireButton(){
+	var guessInput = document.getElementById("guessInput");
+	var guess = guessInput.value;
+	controller.processGuess(guess);
+	guessInput.value = "";
+}
 
-controller.processGuess("C4");
-controller.processGuess("D4");
-controller.processGuess("E4");
+function handleKeyPress(e){
+	var fireButton = document.getElementById("fireButton");
+	if(e.keyCode === 13){
+		fireButton.click();
+		return false;
+	}
+}
 
-controller.processGuess("B0");
-controller.processGuess("B1");
-controller.processGuess("B2");
 
-
-/*var ships1 = [{location: ["10", "20", "30"], hits: ["", "", ""]},
-			  {location: ["32", "33", "34"], hits: ["", "", ""]},
-			  {location: ["63", "64", "65"], hits: ["", "", "hit"]}];
-
-view.displayMiss("00");
-view.displayMiss("55");
-view.displayMiss("25");
-view.displayHit("34");
-view.displayHit("12");
-view.displayHit("26");
-
-view.displayMessage("Tap tap, is this thing on?");
-*/
+window.onload = init;
