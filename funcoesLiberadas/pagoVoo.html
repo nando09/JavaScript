@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Passageiro pagou o voo?</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var passenger = [{name: "Jane Doloop", paid: true},
+						 {name: "Dr. Evel", paid: true},
+						 {name: "Sue Property", paid: false},
+						 {name: "John Funcall", paid: true}];
+
+		function printPago(passenger){
+			if(!passenger.paid){
+				return passenger.name + " NÃO pagou a passagem!";
+			}else{
+				return passenger.name + " pagou a passagem!";
+			}
+		}
+
+		function process(passenger, testFunction){
+			for(var i = 0; i < passenger.length; i++){
+				alert(testFunction(passenger[i]));
+			}
+		}
+
+		process(passenger, printPago);
+
+	</script>
+</body>
+</html>

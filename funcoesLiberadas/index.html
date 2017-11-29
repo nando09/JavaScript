@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Primeira funcão passa funcao</title>
 </head>
 <body>
-	
+	<script type="text/javascript">
+		function sayIt(translator){
+			var phrase = translator("Hello");
+			alert(phrase);
+		}
+
+		function hawaiianTranslator(word){
+			if(word === "Hello") return "Aloha!!";
+			if(word === "GoodBye") return "Aloha";
+		}
+
+		sayIt(hawaiianTranslator);
+	</script>
 </body>
 </html>

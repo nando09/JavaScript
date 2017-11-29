@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Voo</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var passenger = [{name: "Jane Doloop", paid: true},
+						 {name: "Dr. Evel", paid: true},
+						 {name: "Sue Property", paid: false},
+						 {name: "John Funcall", paid: true}];
+
+		function process(passenger, testFunction){
+			for(var i = 0; i < passenger.length; i++){
+				if(testFunction(passenger[i])){
+					return false;
+				}
+			}
+			return true;
+		}
+
+		function checkNoFlyList(passenger){
+			return(passenger.name === "Dr. Evel");
+		}
+
+		function checkNotPaid(passenger){
+			return(!passenger.paid);
+		}
+
+		var allCanFly = process(passenger, checkNoFlyList);
+		if(!allCanFly){
+			console.log("Passageiro não pode voar, segurar o voo para o desembarque!");
+		}
+
+		var allPaid = process(passenger, checkNotPaid);
+		if(!allPaid){
+			console.log("Passageiro caloteiro, mandar sair do voo!");
+		}
+
+		if(allPaid && allCanFly){
+			console.log("Passageiro tudo firmeza, podemos decolar rumo ao destino! ");
+		}
+
+	</script>
+</body>
+</html>

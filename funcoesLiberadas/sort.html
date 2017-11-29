@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sorts</title>
+	<script type="text/javascript">
+		var numbersArray = [60, 50, 62, 58, 54, 54, 01];
+
+		var products = [{name: "Grapefruit", calories: 170, color: "Vermelho", sold: 8200},
+						{name: "Orange", calories: 160, color: "Laranja", sold: 12101},
+						{name: "Cola", calories: 210, color: "Caramelo", sold: 25412},
+						{name: "Diet Cola", calories: 0, color: "Caramelo", sold: 43922},
+						{name: "Lemon", calories: 200, color: "Claro", sold: 14983},
+						{name: "Raspberry", calories: 180, color: "Rosa", sold: 9427},
+						{name: "Root Beer", calories: 200, color: "Caramelo", sold: 9909},
+						{name: "Water", calories: 0, color: "Claro", sold: 62123}];
+
+		numbersArray.sort(compareNumbers);
+		products.sort(compareSold);
+
+		function compareSold(colaA, colaB){
+			return colaA.sold - colaB.sold;
+		}
+
+		function compareNumbers(num1, num2){
+			return num1 - num2;
+		}
+
+		function printProducts(products){
+			for (var i = 0; i < products.length; i++){
+				console.log("Name: "+ products[i].name +
+							", Calories: "+ products[i].calories +
+							", Color: "+ products[i].color +
+							", Sold: "+ products[i].sold);
+			}
+		}
+
+		console.log(numbersArray);
+		printProducts(products);
+		
+	</script>
+</head>
+<body>
+</body>
+</html>

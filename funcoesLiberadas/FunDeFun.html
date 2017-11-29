@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Voo</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var passenger = [{name: "Jane Doloop", paid: true,  ticket: "coach"},
+						 {name: "Dr. Evel", paid: true,  ticket: "firstclass"},
+						 {name: "Sue Property", paid: false,  ticket: "firstclass"},
+						 {name: "John Funcall", paid: true,  ticket: "coach"},
+						 {name: "Fernando Batista", paid: true,  ticket: "premium"},
+						 {name: "Jaqueline Belo", paid: true,  ticket: "premium"},
+						 {name: "Mel Belo de Oliveira", paid: true,  ticket: "premium"}];
+
+		var products = [{name: "Grapefruit", calories: 170; color: "Vermelho"; sold: 8200},
+						{name: "Orange", calories: 160; color: "Laranja"; sold: 12101},
+						{name: "Cola", calories: 210; color: "Caramelo"; sold: 25412},
+						{name: "Diet Cola", calories: 0; color: "Caramelo"; sold: 43922},
+						{name: "Lemon", calories: 200; color: "Claro"; sold: 14983},
+						{name: "Raspberry", calories: 180; color: "Rosa"; sold: 9427},
+						{name: "Root Beer", calories: 200; color: "Caramelo"; sold: 9909},
+						{name: "Water", calories: 0; color: "Claro"; sold: 62123}];
+
+		function createDrinkOrder(passenger){
+			var orderFunction;
+
+			if (passenger.ticket === "premium"){
+				orderFunction = function(){
+					alert(passenger.name + " e qual bebida? Pois tu pode tudo, você é zika manooooo!");
+				}
+			}else if(passenger.ticket === "firstclass"){
+				orderFunction = function(){
+					alert(passenger.name + " você gostaria de um conhaque ou vinho?");
+				}
+			}else{
+				orderFunction = function(){
+					alert(passenger.name + " voce gostaria de água ou coca?")
+				}
+			}
+			return orderFunction;
+		}
+
+		function createEatOrder(passenger){
+			var orderFunction;
+			if (passenger.ticket === "premium"){
+				orderFunction = function(){
+					alert(passenger.name + " e para comer o que? você é mostruoso menino ... ");
+				}
+			}else if(passenger.ticket === "firstclass"){
+				orderFunction = function(){
+					alert(passenger.name + " e para comer gostaria de um merda ou de bosta?");
+				}
+			}else{
+				orderFunction = function(){
+					alert(passenger.name + " e quer mixado ou cagado?")
+				}
+			}
+			return orderFunction;
+		}
+
+		function serveCustomer(passenger){
+			var getDrinkOrderFunction = createDrinkOrder(passenger);
+			var getEatOrderFunction = createEatOrder(passenger);
+
+			getDrinkOrderFunction();
+			getEatOrderFunction();
+			//pegar o pedido de comida
+//			getDrinkOrderFunction();
+//			getDrinkOrderFunction();
+			//Exibir filme
+//			getDrinkOrderFunction();
+			//recolher o lixo
+		}
+
+		function servePassengers(passenger){
+			for(var i = 0; i < passenger.length; i++){
+				serveCustomer(passenger[i]);
+			}
+		}
+
+		servePassengers(passenger);
+	</script>
+</body>
+</html>
