@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Funcão anônima</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var migrating = true;
+		var fly = function(num){
+				var sound = "Flying!";
+				function wingFlapper(){
+					console.log(sound);
+				}
+				for (var i = 0; i < num; i++) {	
+					wingFlapper();
+				}
+		}	
+
+		function quack(num){
+				var sound = "Quack!";
+				function quacker(){
+					console.log(sound);
+				}
+				for (var i = 0; i < num; i++) {	
+					quacker();
+				}
+		}
+
+		if(migrating){
+			quack(4);
+			fly(4);
+		}
+
+	</script>
+</body>
+</html>

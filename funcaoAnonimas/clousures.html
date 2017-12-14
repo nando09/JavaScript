@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clousures</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function makeCount(){
+			var count = 0;
+
+			function counter(){
+				count = count + 1;
+				return count;
+			}
+
+			return counter;
+		}
+
+		var doCount = makeCount();
+		console.log(doCount());
+		console.log(doCount());
+		console.log(doCount());
+		console.log(doCount());
+	</script>
+</body>
+</html>

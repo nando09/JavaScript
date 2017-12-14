@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inner</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var justAVar = "Oh, você não worry sempre aqui, eu sou GLOBAL";
+
+		function whereAreYou(){
+			var justAVar = "Eu sou uma variavel local!";
+
+			function inner(){
+				return justAVar;
+			}
+
+			return inner;
+		}
+
+		var innerFunction = whereAreYou();
+		var result = innerFunction();
+		console.log(result);
+	</script>
+</body>
+</html>

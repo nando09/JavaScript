@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Clousures</title>
+	<style type="text/css">
+		body, button { margin: 10px; }
+		div { padding: 10px; }
+	</style>
+</head>
+<script type="text/javascript">
+	function setTime(doneMessage, n){
+		setTimeout(function(){
+			alert(doneMessage);
+		}, n);
+
+		doneMessage = "OUCH";
+	}
+
+	setTime("Cookies are done!", 3000);
+
+	window.onload = function(){
+		var count = 0;
+		var two = 0;
+		var message = "Você clicou";
+		var div = document.getElementById("message");
+		var divTwo = document.getElementById("messageTwo");
+
+		var button = document.getElementById("clickme");
+		button.onclick = function(){
+			count++;
+			if(count == 1){
+				div.innerHTML = message +" no botão "+  count + " vez!";
+			}else{
+				div.innerHTML = message +" no botão "+ count + " vezes!";
+			}
+		};
+
+		div.onclick = function(){
+			two++;
+			if(two == 1){
+				divTwo.innerHTML = message +" na mensagem "+ two + " vez!";
+			}else{
+				divTwo.innerHTML = message +" na mensagem "+ two + " vezes!";
+			}
+		}
+	};
+</script>
+<body>
+	<button id="clickme">Clique me</button>
+	<div id="message"></div>
+	<div id="messageTwo"></div>
+</body>
+</html>

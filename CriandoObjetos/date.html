@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Objeto Date</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var now = new Date();
+
+		var dateString = now.toString();
+		var theYear = now.getFullYear();
+		var theDayOdweek = now.getDay();
+		console.log(dateString);
+		console.log(theYear);
+		console.log(theDayOdweek);
+
+		var birthday = new Date("May 1, 1983");
+		var birthdayTwo = new Date("May 1, 1983 08:03 pm");
+		console.log(birthday);
+		console.log(birthdayTwo);
+	</script>
+</body>
+</html>
